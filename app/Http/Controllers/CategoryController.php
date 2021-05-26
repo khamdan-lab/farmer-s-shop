@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,7 +35,17 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
 
+            'name' => 'required',
+
+        ]);
+
+
+        Category::create($request->all());
+
+        return redirect()->route('categories.index')
+                        ->with('success','Category berhasil ditambahkan');
     }
 
 
@@ -58,8 +69,4 @@ class CategoryController extends Controller
         //
     }
 
-    public function product_category(Category $category)
-    {
-        return $category;
-    }
 }

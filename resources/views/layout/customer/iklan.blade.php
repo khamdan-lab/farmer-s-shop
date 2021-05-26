@@ -42,16 +42,16 @@
 
     <div class="card-group">
     @foreach ($category as $data)
-      <div class="card">
+      <div class="card ml-3">
         <img src="{{ asset('/gambar/bibit.png') }}" class="card-img-top container" alt="..." />
         <div class="card-body">
-          <h5 class="card-title"> {{ $data->name}}</h5>
+          <h5 class="card-title"> {{ $data-> name}}</h5>
           <p class="card-text">
             {{ $data->information }}
           </p>
         </div>
         <div class="card-footer">
-        <a href="" class="btn btn-secondary btn-sm container">Lihat Product</a>
+        <a href="{{ route('customer.kategori',['id' => $data->id]) }}" class="btn btn-secondary btn-sm container">Lihat Product</a>
           {{-- <button type="button" class="btn btn-secondary btn-sm container">Lihat Produk</button> --}}
         </div>
       </div>

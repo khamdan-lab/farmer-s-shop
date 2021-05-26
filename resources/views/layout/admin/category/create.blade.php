@@ -4,6 +4,7 @@
 
     <form action="" method="POST" enctype="multipart/form-data">
         @csrf
+
         <div class="content">
             <div class="row">
                 <div class="col-sm-6">
@@ -20,10 +21,11 @@
 
                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a class="btn btn-primary" href="{{ route('products.index') }}"> Kembali</a>
+                        <a class="btn btn-primary" href=""> Kembali</a>
                     </div>
                 </div>
             </div>
         </div>
+
     </form>
 @endsection

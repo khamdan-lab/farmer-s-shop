@@ -38,7 +38,7 @@ Route::get('/history', function () {
     return view('layout.customer.history');
 });
 
-// Route::get('/product-category/{category}','CategoryController@product_category')->name('product.category');
+Route::view('/latihan', 'layout.customer.latihan')->name('latihan');
 
-
-
+Route::get('/kategori/{id}','KategoriController@productByKategori')->name('customer.kategori');
+Route::get('/DetailProduk/{id}','KategoriController@productByDetail')->name('produk.detail');

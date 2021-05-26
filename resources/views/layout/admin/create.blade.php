@@ -3,6 +3,7 @@
 @section('content')
 
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+
         @csrf
         <div class="content">
             <div class="row">

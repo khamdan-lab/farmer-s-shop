@@ -91,16 +91,16 @@ class ProductController extends Controller
     }
 
 
-    public function bibit(){
-       $bibit = ProductModel::all();
-       print_r($bibit);
-       return view('layout.customer.bibit',compact('bibit'));
-    }
-    public function pupuk(){
+    // public function bibit(){
+    //    $bibit = ProductModel::all();
+    //    print_r($bibit);
+    //    return view('layout.customer.bibit',compact('bibit'));
+    // }
+    // public function pupuk(){
 
-    }
+    // }
 
-    public function peralatan(){
+    // public function peralatan(){
 
-    }
+    // }
 }
