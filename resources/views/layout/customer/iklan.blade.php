@@ -12,13 +12,13 @@
 
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src="{{ asset('/gambar/4.png') }}"class="d-block w-50 container" alt="..." />
+          <img src="{{ asset('/gambar/1.png') }}"class="d-block w-50 container" alt="..." />
         </div>
         <div class="carousel-item" data-bs-interval="2000">
           <img src="{{ asset('/gambar/4.png') }}" class="d-block w-50 container" alt="..." />
         </div>
         <div class="carousel-item">
-          <img src="{{ asset('/gambar/4.png') }}" class="d-block w-50 container" alt="..." />
+          <img src="{{ asset('/gambar/2.jpg') }}" class="d-block w-50 container" alt="..." />
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -34,7 +34,7 @@
   <!-- Penutup Carousel -->
 
   <div class="container">
-    <h3>Kategori Produk</h3>
+    <h3><strong>Kategori Produk</strong></h3>
   </div>
 
   <!-- Chard Kategori Produk -->
@@ -45,13 +45,10 @@
       <div class="card ml-3">
         <img src="{{ asset('/gambar/bibit.png') }}" class="card-img-top container" alt="..." />
         <div class="card-body">
-          <h5 class="card-title"> {{ $data-> name}}</h5>
-          <p class="card-text">
-            {{ $data->information }}
-          </p>
+          <h5 class="card-title"> <strong>{{ $data-> name}}</strong></h5>
         </div>
         <div class="card-footer">
-        <a href="{{ route('customer.kategori',['id' => $data->id]) }}" class="btn btn-secondary btn-sm container">Lihat Product</a>
+        <a href="{{ route('customer.kategori',['id' => $data->id]) }}" class="btn btn-secondary btn-sm container">Lihat Produk</a>
           {{-- <button type="button" class="btn btn-secondary btn-sm container">Lihat Produk</button> --}}
         </div>
       </div>

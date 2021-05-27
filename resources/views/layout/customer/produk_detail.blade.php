@@ -36,7 +36,7 @@
                             <td>Jumlah Pesanan</td>
                             <td>:</td>
                             <td>
-                                <input type="number"  value="{{ $data -> stok }}">
+                                <input type="number">
 
 
                             </td>
