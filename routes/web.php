@@ -15,7 +15,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', 'CategoryController@index');
+Route::get('/', 'LandingController@index');
 
 Auth::routes();
 
@@ -26,16 +26,12 @@ Route::resource('products','ProductController');
 
 Route::resource('categories','CategoryController');
 
-Route::get('/categories','CategoryController@index_admin');
-
-
-
-
+// Route::get('/categories','CategoryController@index_admin');
 
 // User
 
 Route::get('/history', function () {
-    return view('layout.customer.history');
+    return view('layout.customer.histori');
 });
 
 Route::view('/latihan', 'layout.customer.latihan')->name('latihan');

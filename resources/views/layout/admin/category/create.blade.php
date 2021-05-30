@@ -2,7 +2,7 @@
 @section('title', 'Add Category')
 @section('content')
 
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="content">
@@ -10,10 +10,30 @@
                 <div class="col-sm-6">
 
                     <div class="form-group">
+                        <label>Gambar Kategori</label>
+                        <input type ="file" name="image" class="form-control" value="{{old('image')}}">
+                        <div class="text-danger">
+                            @error('image')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label>Nama Kategori</label>
                         <input type= "text" name = "name" class="form-control" value="{{ old('name')}}">
                         <div class="text-danger">
                             @error('name')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Information</label>
+                        <input type= "text" name = "information" class="form-control" value="{{ old('information')}}">
+                        <div class="text-danger">
+                            @error('information')
                                 {{ $message }}
                             @enderror
                         </div>

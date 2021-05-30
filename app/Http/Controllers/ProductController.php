@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\ProductModel;
+
 
 class ProductController extends Controller
 {
 
     public function index()
     {
-        $product = ProductModel::with('category')->get();
+        $products = ProductModel::with('category')->get();
 
-        return view('layout.admin.index',compact('product'));
+        return view('layout.admin.index',compact('products'));
     }
 
     public function create()
@@ -22,6 +24,7 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
+        // $request->validated();
         $request->validate([
 
             'tanggal_masuk' => 'required',
@@ -34,11 +37,17 @@ class ProductController extends Controller
 
         ]);
 
+        $input = $request->all();
 
-        ProductModel::create($request->all());
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
 
-        return redirect()->route('products.index')
-                        ->with('success','Product berhasil ditambahkan');
+        ProductModel::create($input);
+        return redirect()->route('products.index')->with('success','Product berhasil ditambahkan');
     }
     /**
      * Display the specified resource.
@@ -90,17 +99,4 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success','Product berhasil dihapus');
     }
 
-
-    // public function bibit(){
-    //    $bibit = ProductModel::all();
-    //    print_r($bibit);
-    //    return view('layout.customer.bibit',compact('bibit'));
-    // }
-    // public function pupuk(){
-
-    // }
-
-    // public function peralatan(){
-
-    // }
 }

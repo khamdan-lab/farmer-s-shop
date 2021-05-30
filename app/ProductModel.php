@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Category;
+
 
 
 class ProductModel extends Model
@@ -16,14 +18,13 @@ class ProductModel extends Model
         'stock',
         'image',
         'information',
-        'category_id',
+        'category_id'
     ];
 
     public function category(){
 
         return $this->belongsTo(Category::class);
     }
-
 
 
 

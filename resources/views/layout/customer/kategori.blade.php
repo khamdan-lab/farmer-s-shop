@@ -30,7 +30,7 @@
     @foreach($category as $data)
     <div class="col-sm-2 mt-3">
         <div class="card">
-        <img src="{{ asset('/gambar/bibit.png') }}" class="img-fluid" width="100%" style="height:200px">
+        <img src="/image/{{ $data->image }}" class="img-fluid" width="100%" style="height:200px">
         <div class="block-4-text p-4">
         <h3>{{$data -> name_goods}}</h3>
         <p class="mb-0"></p>

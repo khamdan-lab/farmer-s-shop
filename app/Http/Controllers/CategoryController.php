@@ -17,13 +17,6 @@ class CategoryController extends Controller
     {
         $category = Category::all();
 
-        return view('layout.customer.iklan', compact('category'));
-
-    }
-    public function index_admin()
-    {
-        $category = Category::all();
-
         return view('layout.admin.category.index', compact('category'));
 
     }
@@ -37,12 +30,22 @@ class CategoryController extends Controller
     {
         $request->validate([
 
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required',
+            'information' => 'required',
 
         ]);
 
+        $input = $request->all();
 
-        Category::create($request->all());
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+
+        Category::create($input);
 
         return redirect()->route('categories.index')
                         ->with('success','Category berhasil ditambahkan');
@@ -54,19 +57,28 @@ class CategoryController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-
+        return view('layout.admin.category.edit', compact('category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+       $request->validate([
+            'name' => 'required',
+            'informtion' => 'required',
+       ]);
+
+       $category->update($request->all());
+
+       return redirect()->route('categories.index')
+                        ->with('success', 'Category berhail diupdate');
     }
 
-    public function destroy($id)
+    public function destroy( Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index')->with('success', 'Category berhasil dihapus');
     }
 
 }
