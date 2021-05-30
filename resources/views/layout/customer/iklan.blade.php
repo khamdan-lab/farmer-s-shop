@@ -43,7 +43,7 @@
     <div class="card-group">
     @foreach ($category as $data)
       <div class="card ml-3">
-        <img src="{{ asset('/gambar/bibit.png') }}" class="card-img-top container" alt="..." />
+        <img src="/image/{{ $data->image }} " class="card-img-container" alt="">
         <div class="card-body">
           <h5 class="card-title"> <strong>{{ $data-> name}}</strong></h5>
         </div>

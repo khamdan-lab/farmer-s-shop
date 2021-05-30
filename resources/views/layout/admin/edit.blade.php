@@ -79,7 +79,7 @@
 
                     <div class="form-group">
                         <label>Gambar Product</label>
-                        <input type ="file" name="image" class="form-control" value="{{ $product-> image }}>
+                        <input type ="file" name="image" class="form-control" >
                         <div class="text-danger">
                             @error('image')
                                 {{ $message }}

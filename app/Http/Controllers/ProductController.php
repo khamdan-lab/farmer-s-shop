@@ -70,21 +70,28 @@ class ProductController extends Controller
     public function update(Request $request, ProductModel $product)
     {
         $request->validate([
-
             'tanggal_masuk' => 'required',
             'name_goods' => 'required',
             'cost' => 'required',
             'stock' => 'required',
-            'image' => 'required',
             'information' => 'required',
             'category_id' => 'required',
-
         ]);
 
-        $product->update($request->all());
+         $input = $request->all();
 
-        return redirect()->route('products.index')
-                        ->with('success','Product berhasil diupdate');
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+
+        $product->update($input);
+
+        return redirect()->route('products.index')->with('success','Product berhasil diupdate');
     }
 
     /**

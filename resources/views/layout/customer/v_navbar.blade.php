@@ -16,10 +16,11 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Product
           </a>
+
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Pupuk</a>
-            <a class="dropdown-item" href="#">Bibit</a>
-            <a class="dropdown-item" href="#">Alat Pertanian</a>
+            @foreach ($category as $data )
+            <a class="dropdown-item" href="{{ route('customer.kategori',['id' => $data->id]) }}">{{$data -> name}}</a>
+            @endforeach
           </div>
         </li>
 

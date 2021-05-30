@@ -47,8 +47,7 @@ class CategoryController extends Controller
 
         Category::create($input);
 
-        return redirect()->route('categories.index')
-                        ->with('success','Category berhasil ditambahkan');
+        return redirect()->route('categories.index')->with('success','Category berhasil ditambahkan');
     }
 
 
@@ -69,16 +68,32 @@ class CategoryController extends Controller
             'informtion' => 'required',
        ]);
 
-       $category->update($request->all());
+       $input = $request->all();
 
-       return redirect()->route('categories.index')
-                        ->with('success', 'Category berhail diupdate');
+       if ($image = $request->file('image')) {
+           $destinationPath = 'image/';
+           $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+           $image->move($destinationPath, $profileImage);
+           $input['image'] = "$profileImage";
+       }else{
+           unset($input['image']);
+       }
+
+       $category->update($input);
+
+       return redirect()->route('categories.index')->with('success', 'Category berhail diupdate');
     }
 
     public function destroy( Category $category)
     {
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Category berhasil dihapus');
+    }
+
+    public function navbar(){
+        $category = Category::all();
+
+        return view('layout.customer.v_navbar', compact('category'));
     }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,9 @@ class HomeController extends Controller
     {
         if (auth()->user()->level == 2) {
 
-            return view('layout.customer.iklan');
+            $category = Category::all();
+
+            return view('layout.customer.iklan',compact('category'));
         }
 
         elseif (auth()->user()->level == 1){
