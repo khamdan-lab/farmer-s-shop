@@ -38,3 +38,4 @@ Route::view('/latihan', 'layout.customer.latihan')->name('latihan');
 
 Route::get('/kategori/{id}','KategoriController@productByKategori')->name('customer.kategori');
 Route::get('/DetailProduk/{id}','KategoriController@productByDetail')->name('produk.detail');
+Route::post('/pesan/{id}','PesananController@pesan')->name('produk.pesan');

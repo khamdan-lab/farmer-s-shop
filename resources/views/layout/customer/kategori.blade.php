@@ -27,6 +27,7 @@
   <a href="/" class="btn btn-warning mt-2">Kembali</a>
 
   <div class="row mb-3">
+
     @foreach($category as $data)
     <div class="col-sm-2 mt-3">
         <div class="card">

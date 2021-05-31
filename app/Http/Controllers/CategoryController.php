@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\ProductModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 
 

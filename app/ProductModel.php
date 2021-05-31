@@ -26,6 +26,10 @@ class ProductModel extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function pesanan_details(){
+
+        return $this->hasMany(PesananDetail::class);
+    }
 
 
 

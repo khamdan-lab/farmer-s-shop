@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <img src="/image/{{ $data->image }}" class="card-img-top container" alt="..." />
+                    <img src="/image/{{ $data->image }}" class="card-img-top container" alt="...">
                 </div>
             </div>
         </div>
@@ -36,22 +36,18 @@
                             <td>Jumlah Pesanan</td>
                             <td>:</td>
                             <td>
-                                <input type="number">
-
+                               <form action="{{route('produk.pesan',['id'=> $data->id])}}" method="post">
+                                @csrf
+                                <input type="text" name="jumlah_pesan" class="form control" required="">
 
                             </td>
                         </tr>
 
                     </table>
-                    <tr>
-                        <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-shopping-cart">
-
-                            {{-- @if (auth::users)
-                            return redirect()->route('login');
-                            @endif --}}
-
-                            Masukan Keranjang</i></button>
-                    </tr>
+                        <tr>
+                        <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-shopping-cart">Masukan Keranjang</i></button>
+                        </tr>
+                    </form>
                 </div>
             </div>
 
