@@ -9,11 +9,12 @@ class Pesanan extends Model
     protected $tabel = "pesanans";
 
     protected $fillable = [
-
         'user_id',
         'tanggal',
         'status',
         'jumlah_harga',
+        'image',
+        'approve',
 
     ];
    public function user(){
@@ -25,4 +26,6 @@ class Pesanan extends Model
 
        return $this->hasMany(PesananDetail::class);
    }
+
+
 }

@@ -66,7 +66,6 @@ class ProductController extends Controller
         return view('layout.admin.edit',compact('product'));
     }
 
-
     public function update(Request $request, ProductModel $product)
     {
         $request->validate([

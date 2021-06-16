@@ -39,13 +39,13 @@
 
   <!-- Chard Kategori Produk -->
   <div class="container mt-5 mb-5">
-
     <div class="card-group">
     @foreach ($category as $data)
       <div class="card ml-3">
-        <img src="/image/{{ $data->image }} " class="card-img-container" alt="">
+        <img src="/image/{{ $data->image }} " class="card-img-top" alt="">
         <div class="card-body">
-          <h5 class="card-title"> <strong>{{ $data-> name}}</strong></h5>
+          <h5 class="card-title text-center"> <strong>{{ $data-> name}}</strong></h5>
+          <p class="card-text">{{$data->information}}</p>
         </div>
         <div class="card-footer">
         <a href="{{ route('customer.kategori',['id' => $data->id]) }}" class="btn btn-secondary btn-sm container">Lihat Produk</a>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -30,12 +33,26 @@ Route::resource('categories','CategoryController');
 
 // User
 
-Route::get('/history', function () {
-    return view('layout.customer.histori');
-});
+Route::get('/history', 'PesananController@history')->name('pesanan.history');
 
 Route::view('/latihan', 'layout.customer.latihan')->name('latihan');
 
 Route::get('/kategori/{id}','KategoriController@productByKategori')->name('customer.kategori');
 Route::get('/DetailProduk/{id}','KategoriController@productByDetail')->name('produk.detail');
 Route::post('/pesan/{id}','PesananController@pesan')->name('produk.pesan');
+Route::get('checkout', 'PesananController@checkout')->name('produk.checkout');
+Route::delete('/checkout/{id}', 'PesananController@delete')->name('produk.delete');
+
+Route::get('konfirmasi-checkout', 'PesananController@konfirmasi')->name('konfirmasi.checkout');
+
+Route::get('/historyadmin', 'HistoryController@invoice')->name('history');
+Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran');
+Route::post('/kirim', 'PembayaranController@pembayaran')->name('kirim');
+
+Route::post('/bayar', 'HistoryController@bukti')->name('bayar');
+
+Route::post('/approve', 'HistoryController@approve')->name('approve');
+
+
+
+

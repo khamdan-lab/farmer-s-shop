@@ -13,7 +13,7 @@
             </a>
         </li>
           <li class="nav-item">
-            <a href="/historyadmin" class="nav-link">
+            <a href="{{ route('history')}}" class="nav-link">
               <i class="nav-icon far fa-circle text-warning"></i>
               <p>History</p>
             </a>

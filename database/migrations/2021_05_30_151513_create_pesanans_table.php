@@ -19,6 +19,9 @@ class CreatePesanansTable extends Migration
             $table->date('tanggal');
             $table->string('status');
             $table->integer('jumlah_harga');
+            $table->string('image');
+            $table->string('approve');
+
             $table->timestamps();
         });
     }

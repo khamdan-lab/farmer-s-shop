@@ -36,24 +36,27 @@
                             <td>Jumlah Pesanan</td>
                             <td>:</td>
                             <td>
-                               <form action="{{route('produk.pesan',['id'=> $data->id])}}" method="post">
+                                <form action="{{route('produk.pesan',['id'=> $data->id])}}" method="post">
                                 @csrf
                                 <input type="text" name="jumlah_pesan" class="form control" required="">
-
                             </td>
                         </tr>
-
                     </table>
                         <tr>
-                        <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-shopping-cart">Masukan Keranjang</i></button>
+                            @if (Auth::check())
+                            <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-shopping-cart">Masukan Keranjang</i></button>
+
+                            @else
+                            <a href="/" class="btn btn-dark btn-block"><i class="fa fa-shopping-cart">Masukan Keranjang</i></a>
+
+                            @endif
                         </tr>
                     </form>
-                </div>
+               </div>
             </div>
-
         </div>
     </div>
-    </div>
+<div>
 
 </div>
 

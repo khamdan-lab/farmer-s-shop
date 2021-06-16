@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\ProductModel;
 use App\Pesanan;
 use App\PesananDetail;
-use App\User;
-
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +31,8 @@ class PesananController extends Controller
             $pesanan->tanggal = $tanggal;
             $pesanan->status = 0;
             $pesanan->jumlah_harga =0;
+            $pesanan->image = 0;
+            $pesanan->approve= 0;
             $pesanan->save();
         }
 
@@ -71,5 +71,60 @@ class PesananController extends Controller
 
 
     }
-}
 
+    public function checkout(){
+
+        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $pesanan_details = [];
+
+        if (!empty($pesanan)) {
+
+            $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        }
+
+        return view('layout.customer.checkout', compact('pesanan','pesanan_details'));
+    }
+
+    public function delete($id)
+    {
+        $pesanan_detail = PesananDetail::where('id', $id)->first();
+
+        $pesanan = Pesanan::where('id', $pesanan_detail->pesanan_id)->first();
+        $pesanan->jumlah_harga = $pesanan->jumlah_harga-$pesanan_detail->jumlah_harga;
+        $pesanan->update();
+
+        $pesanan_detail->delete();
+
+        return redirect('checkout');
+
+    }
+
+    public function konfirmasi(){
+
+        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $pesanan_id = $pesanan->id;
+        $pesanan->update();
+
+        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan_id)->get();
+        foreach($pesanan_details as $pesanan_details){
+
+            $barang = ProductModel::where('id', $pesanan_details->product_id)->first();
+            $barang->stock = $barang->stock-$pesanan_details->jumlah;
+            $barang->update();
+
+        }
+
+        return redirect('/pembayaran');
+
+    }
+
+
+    public function history(){
+
+        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status','!=',0)->get();
+
+        return view('layout.customer.history', compact('pesanan'));
+
+    }
+
+}

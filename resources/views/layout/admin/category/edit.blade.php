@@ -4,8 +4,6 @@
 
     <form action="{{ route('categories.update', $category->id) }}">
         @csrf
-
-
         <div class="content">
             <div class="row">
                 <div class="col-sm-6">
