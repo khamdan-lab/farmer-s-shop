@@ -55,4 +55,6 @@ Route::post('/approve', 'HistoryController@approve')->name('approve');
 
 
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');

@@ -7,7 +7,7 @@
         @csrf
         <div class="content">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-6">{{ route('products.store') }}
 
                     <div class="form-group">
                         <label>Tanggal Masuk</label>
